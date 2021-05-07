@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+  <title>{% block title %}{% endblock %}</title>
+
+    <!-- Loading third party fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+    <link href="{% static 'fonts/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Loading main css file -->
+
+  </head>
+
+  <body>
+
+    <div class="site-content">
+      <div class="site-header">
+        <div class="container">
+          <a href="{% url 'home' %}" class="branding">
+            <img src="{%static 'images/logo.png' %}" alt="" class="logo">
+            <div class="logo-type">
+              <h1 class="site-title">WeatherForecast</h1>
+              <small class="site-description">Real time weather forecast</small>
+            </div>
+          </a>
+
+          <!-- Default snippet for navigation -->
+          <div class="main-navigation">
+            <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+            <ul class="menu">
+              <li class="menu-item current-menu-item" id="omar"><a href="{% url 'home' %}">Home</a></li>
+
+            </ul> <!-- .menu -->
+          </div> <!-- .main-navigation -->
+
+          <div class="mobile-navigation"></div>
+
+        </div>
+      </div> <!-- .site-header -->
+
+      <div class="hero" data-bg-image="{% static 'images/banner.png' %}">
+        <div class="container">
+          <form action="{%url 'result'%}" class="find-location" method="post">
+            {% csrf_token%}
+            <input type="text" name="city" placeholder="Enter your city name..." required>
+            <input type="submit" value="Find">
+          </form>
+
+        </div>
+      </div>
+        {% block content %}
+
+        {% endblock content %}
+
+      <footer class="site-footer">
+        
+ <p><h2>One of the first things you probably do every morning is look out the window to see what the weather is like. Looking outside and listening to the day’s forecast helps you decide what clothes you will wear and maybe even what you will do throughout the day. If you don’t have school and the weather looks sunny, you might visit the zoo or go on a picnic. A rainy day might make you think about visiting a museum or staying home to read.
+The weather affects us in many ways. Day-to-day changes in weather can influence how we feel and the way we look at the world. Severe weather, such as tornadoes, hurricanes, and blizzards, can disrupt many people’s lives because of the destruction they cause.
+What Makes Weather
+
+There are six main components, or parts, of weather. They are temperature, atmospheric pressure, wind, humidity, precipitation, and cloudiness. Together, these components describe the weather at any given time. These changing components, along with the knowledge of atmospheric processes, help meteorologists—scientists who study weather—forecast what the weather will be in the near future.</h2></p>
+
+      </footer> <!-- .site-footer -->
+    </div>
+
+   
+    <script src="{%static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{%static 'js/plugins.js' %}"></script>
+    <script src="{%static 'js/app.js' %}"></script>
+
+  </body>
+
+</html>
